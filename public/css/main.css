@@ -1,6 +1,17 @@
 .editView {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+}
+
+.applicationShow {
+  width: 45vw;
+  height: auto;
+}
+
+.applicationEdit {
+  width: 45vw;
+  height: auto;
 }
 
 .applicationShow ul {

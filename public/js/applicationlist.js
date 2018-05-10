@@ -31,7 +31,7 @@ class ApplicationList extends React.Component {
                 <button type='button' className='btn btn-danger'>Delete</button>
               </td>
             </tr>
-          </tbody>
+          </tbody>          
         </table>
         {this.state.applicationShowIsVisible ? <ApplicationView /> : ''}
       </div>

@@ -5,16 +5,32 @@ class ApplicationView extends React.Component {
         <div className='applicationShow'>
           <ul>
             <li>
+              <h3>Date Applied</h3>
+              <p>May 4,2018</p>
+            </li>
+            <li>
+              <h3>Company</h3>
+              <p>IBM</p>
+            </li>
+            <li>
+              <h3>Position</h3>
+              <p>Front End Developer</p>
+            </li>
+            <li>
               <h3>Application Link</h3>
+              <p>LINK HERE</p>
             </li>
             <li>
               <h3>Email Correspondence</h3>
+              <p>COMMUNICATION BREAKDOWN</p>
             </li>
             <li>
               <h3>Contact name</h3>
+              <p>Person</p>
             </li>
             <li>
               <h3>Contact Email</h3>
+              <p>Person@IBM.com</p>
             </li>
           </ul>
         </div>
