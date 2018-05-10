@@ -1,0 +1,8 @@
+.editView {
+  display: flex;
+  flex-direction: row;
+}
+
+.applicationShow ul {
+  list-style: none;
+}
