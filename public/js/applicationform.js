@@ -1,4 +1,10 @@
 class ApplicationForm extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      
+    }
+  }
   render() {
     return (
       <div className='field'>
@@ -17,7 +23,19 @@ class ApplicationForm extends React.Component {
           </div>
           <div className="form-group">
             <label for="applicationlink">Application Link</label>
-            <input type="text" className="form-control" id="applicationLink" />
+            <input type="text" className="form-control" id="application_link" />
+          </div>
+          <div className="form-group">
+            <label for="emailresponselink">Email Response Link</label>
+            <input type="text" className="form-control" id="email_response_link" />
+          </div>
+          <div className="form-group">
+            <label for="contactname">Contact Name</label>
+            <input type="text" className="form-control" id="contact_name" />
+          </div>
+          <div className="form-group">
+            <label for="contactemail">Contact Email</label>
+            <input type="text" className="form-control" id="contact_email" />
           </div>
         </form>
       </div>
