@@ -22,28 +22,8 @@ class Application
   end
 
   def self.all
-    results = DB.exec(
-      <<-SQL
-        SELECT
-          users.*,
-          applications.id,
-          applications.date_applied,
-          applications.company,
-          applications.job_title,
-          applications.application_link,
-          applications.email_response_link,
-          applications.contact_name,
-          applications.contact_email,
-          applications.user_id
-        FROM users
-        JOIN applications
-          ON users.id = applications.user_id
-        ORDER BY applications.id DESC
-      SQL
-    )
-    results.each do |result|
-      puts result
-    end
+    results = DB.exec("SELECT * FROM applications;")
+    return results.map{|result| Application.new(result)}
   end
 
   def self.find(id)
@@ -54,7 +34,7 @@ class Application
   def self.create(opts = {})
     results = DB.exec(
       <<-SQL
-        INSERT INTO applications (id, date_applied, company, job_title, application_link, email_response_link, contact_name, contact_email, user_id)
+        INSERT INTO applications (date_applied, company, job_title, application_link, email_response_link, contact_name, contact_email, user_id)
         VALUES ('#{opts["date_applied"]}', '#{opts["company"]}', '#{opts["job_title"]}', '#{opts["application_link"]}', '#{opts["email_response_link"]}', '#{opts["contact_name"]}', '#{opts["contact_email"]}', #{opts["user_id"]})
         RETURNING id, date_applied, company, job_title, application_link, email_response_link, contact_name, contact_email, user_id;
       SQL
@@ -70,7 +50,7 @@ class Application
   def self.update(id, opts={})
     results = DB.exec(
       <<-SQL
-        UPDATE users
+        UPDATE applications
         SET date_applied='#{opts["date_applied"]}', company='#{opts["company"]}', job_title='#{opts["job_title"]}', application_link='#{opts["application_link"]}', email_response_link='#{opts["email_response_link"]}', contact_name='#{opts["contact_name"]}', contact_email='#{opts["contact_email"]}', user_id=#{opts["user_id"]}
         WHERE id=#{id}
         RETURNING id, date_applied, company, job_title, application_link, email_response_link, contact_name, contact_email, user_id;

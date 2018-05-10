@@ -2,22 +2,22 @@ class ApplicationsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        render json: Applications.all
+        render json: Application.all
     end
 
     def show
-        render json: Applications.find(params["id"])
+        render json: Application.find(params["id"])
     end
 
     def create
-        render json: Applications.create(params["application"])
+        render json: Application.create(params["application"])
     end
 
     def delete
-        render json: Applications.delete(params["id"])
+        render json: Application.delete(params["id"])
     end
 
     def update
-        render json: Applications.update(params["id"], params["application"])
+        render json: Application.update(params["id"], params["application"])
     end
 end
