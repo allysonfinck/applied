@@ -3,9 +3,14 @@ class ApplicationList extends React.Component {
     super(props)
     this.state={
       applicationShowIsVisible: false,
-      applications: []
+      applications: [],
+      application: {}
     }
     this.toggleState = this.toggleState.bind(this)
+    this.getApplication = this.getApplication.bind(this)
+  }
+  getApplication(application){
+    this.setState({application: application})
   }
   componentDidMount(){
     this.getApplications();
@@ -41,7 +46,7 @@ class ApplicationList extends React.Component {
                   <h3>{application.job_title}</h3>
                 </td>
                 <td>
-                  <button type='button' className='btn btn-info' onClick={()=>this.toggleState('applicationShowIsVisible')}>Edit</button>
+                  <button type='button' className='btn btn-info' onClick={()=>{this.getApplication(application); this.toggleState('applicationShowIsVisible')}}>Edit</button>
                 </td>
                 <td>
                   <button type='button' className='btn btn-danger'>Delete</button>
@@ -52,7 +57,7 @@ class ApplicationList extends React.Component {
 
           </tbody>
         </table>
-        {this.state.applicationShowIsVisible ? <ApplicationView /> : ''}
+        {this.state.applicationShowIsVisible ? <ApplicationView applications={this.state.applications} application={this.state.application}/> : ''}
       </div>
     )
   }

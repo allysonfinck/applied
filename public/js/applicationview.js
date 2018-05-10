@@ -6,31 +6,31 @@ class ApplicationView extends React.Component {
           <ul>
             <li>
               <h3>Date Applied</h3>
-              <p>May 4,2018</p>
+              <p>{this.props.application.date_applied}</p>
             </li>
             <li>
               <h3>Company</h3>
-              <p>IBM</p>
+              <p>{this.props.application.company}</p>
             </li>
             <li>
               <h3>Position</h3>
-              <p>Front End Developer</p>
+              <p>{this.props.application.job_title}</p>
             </li>
             <li>
               <h3>Application Link</h3>
-              <p>LINK HERE</p>
+              <p>{this.props.application.application_link}</p>
             </li>
             <li>
               <h3>Email Correspondence</h3>
-              <p>COMMUNICATION BREAKDOWN</p>
+              <p>{this.props.application.email_response_link}</p>
             </li>
             <li>
               <h3>Contact name</h3>
-              <p>Person</p>
+              <p>{this.props.application.contact_name}</p>
             </li>
             <li>
               <h3>Contact Email</h3>
-              <p>Person@IBM.com</p>
+              <p>{this.props.application.contact_email}</p>
             </li>
           </ul>
         </div>
