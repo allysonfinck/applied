@@ -7,11 +7,13 @@
 .applicationShow {
   width: 45vw;
   height: auto;
+  margin: 0 50px;
 }
 
 .applicationEdit {
   width: 45vw;
   height: auto;
+  margin: 0 50px;
 }
 
 .applicationShow ul {

@@ -33,6 +33,7 @@ class ApplicationView extends React.Component {
               <p>{this.props.application.contact_email}</p>
             </li>
           </ul>
+          <button type="button" className='btn btn-info' onClick={()=>this.props.toggleState('applicationShowIsVisible')}>Back to List</button>
         </div>
         <div className='applicationEdit'>
           <form>
