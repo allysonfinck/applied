@@ -3,14 +3,20 @@ class ApplicationList extends React.Component {
     super(props)
     this.state={
       applicationShowIsVisible: false,
+      addApplicationIsVisible: false,
       applications: [],
       application: {}
     }
-    this.toggleState = this.toggleState.bind(this)
+    this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
+    this.deleteApplication = this.deleteApplication.bind(this)
+    this.handleCreate = this.handleCreate.bind(this)
+    this.handleCreateSubmit = this.handleCreateSubmit.bind(this)
     this.getApplication = this.getApplication.bind(this)
+    this.getApplications = this.getApplications.bind(this)
+    this.toggleState = this.toggleState.bind(this)
   }
-  getApplication(application){
-    this.setState({application: application})
+  componentDidMount(){
+    this.getApplications()
   }
   deleteApplication(application, index){
     console.log(application);
@@ -27,11 +33,26 @@ class ApplicationList extends React.Component {
         })
       })
   }
-  componentDidMount(){
-    this.getApplications();
+  handleCreate(application){
+    const updatedApplications = this.state.applications
+    updatedApplications.push(application)
+    this.setState({applications: updatedApplications})
   }
-  toggleState(st){
-    this.setState({[st]: !this.state[st]})
+  handleCreateSubmit(application){
+    fetch('/applications', {
+      body: JSON.stringify(application),
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(createdApplication => {return createdApplication.json()})
+      .then(jsonedApplication => this.handleCreate(jsonedApplication))
+      .catch(error=>console.log(error))
+  }
+
+  getApplication(application){
+    this.setState({application: application})
   }
   getApplications(){
     fetch('/applications')
@@ -42,11 +63,34 @@ class ApplicationList extends React.Component {
         })
       }).catch(error => console.log(error))
   }
-
+  handleUpdateSubmit(application, index){
+    fetch('applications/' + application.id, {
+      body: JSON.stringify(application),
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(updatedApplication => {return updatedApplication.json()
+    }).then(jsonedApplication => {
+      this.getApplications()
+    }).catch(error => console.log(error))
+  }
+  toggleState(st1, st2){
+    this.setState({
+      [st1]: !this.state[st1],
+      [st2]: !this.state[st2]
+    })
+  }
   render () {
     return (
       <div>
-      {this.state.applicationShowIsVisible ? <ApplicationView applications={this.state.applications} application={this.state.application} toggleState={this.toggleState}/> : ''}
+      <button type='button' className='btn btn-primary' id="addAppBtn" onClick={()=>this.toggleState('addApplicationIsVisible')} toggleState={this.toggleState}>Add an Application</button>
+
+      {this.state.addApplicationIsVisible ? <ApplicationForm toggleState={this.toggleState} applications={this.state.applications} application={this.state.application} handleCreate={this.handleCreate} handleSubmit={this.handleCreateSubmit}/> : ''}
+
+      {this.state.applicationShowIsVisible ? <ApplicationView applications={this.state.applications} application={this.state.application} toggleState={this.toggleState} handleCreate={this.handleCreate} handleUpdateSubmit={this.handleUpdateSubmit}/> : ''}
+
         <table className='table'>
           <tbody>
           {this.state.applications.map((application, index) => {

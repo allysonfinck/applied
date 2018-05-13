@@ -1,13 +1,26 @@
+/* INDEX PAGE */
+#addAppBtn {
+  display: block;
+  margin: 50px auto;
+}
+/* EDIT APP */
 .editView {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  width: 100vw;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .applicationShow {
   width: 45vw;
   height: auto;
   margin: 0 50px;
+}
+
+.applicationShow button{
+  margin-left: 40px;
 }
 
 .applicationEdit {

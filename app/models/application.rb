@@ -51,7 +51,15 @@ class Application
     results = DB.exec(
       <<-SQL
         UPDATE applications
-        SET date_applied='#{opts["date_applied"]}', company='#{opts["company"]}', job_title='#{opts["job_title"]}', application_link='#{opts["application_link"]}', email_response_link='#{opts["email_response_link"]}', contact_name='#{opts["contact_name"]}', contact_email='#{opts["contact_email"]}', user_id=#{opts["user_id"]}
+        SET
+        date_applied='#{opts["date_applied"]}',
+        company='#{opts["company"]}',
+        job_title='#{opts["job_title"]}',
+        application_link='#{opts["application_link"]}',
+        email_response_link='#{opts["email_response_link"]}',
+        contact_name='#{opts["contact_name"]}',
+        contact_email='#{opts["contact_email"]}',
+        user_id=#{opts["user_id"]}
         WHERE id=#{id}
         RETURNING id, date_applied, company, job_title, application_link, email_response_link, contact_name, contact_email, user_id;
       SQL
