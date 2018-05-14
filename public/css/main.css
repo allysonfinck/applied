@@ -1,20 +1,45 @@
+* {
+  font-family: 'Gothic A1', sans-serif;
+}
+
+body {
+  background-color: rgb(254, 254, 254);
+}
+
 /* INDEX PAGE */
 #addAppBtn {
   display: block;
   margin: 50px auto;
 }
+
+#mainPage{
+  display: flex;
+  flex-direction: row;
+}
+
+#profileContainer{
+  margin: 20px 20px;
+  border: 2px solid rgb(51,123,247, .8);
+  border-radius: 5px;
+  height: auto;
+}
+
+.profileInfo{
+  text-align: center;
+}
+
 /* EDIT APP */
 .editView {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100vw;
+  width: 60vw;
   height: auto;
   margin-bottom: 20px;
 }
 
 .applicationShow {
-  width: 45vw;
+  width: 30vw;
   height: auto;
   margin: 0 50px;
 }
@@ -24,7 +49,7 @@
 }
 
 .applicationEdit {
-  width: 45vw;
+  width: 30vw;
   height: auto;
   margin: 0 50px;
 }
